@@ -53,3 +53,38 @@ Pasos que se sigueron en el trabajo:
 
   script: setup.sh
     
+ 5- Conectados a la instancia EC2 via ssh generamos la un cluster EKS
+ - Instalamos eksctl
+ script: eksctl.sh
+
+CREAMOS ROLES PARA EKS Y LOS NODOS EKS 
+
+ 6- Creamos un rol IAM para EKS 
+ - rol_eks.sh
+ - trust-policy.json
+
+  7- Cremos un rol IAM para los nodos EKS
+  - rol_nodos_eks.sh
+  - trust-policy.json
+
+CREAMOS EL CLUSTER
+
+  8- Creamos un cluster eks con los tres pods y los roles a travez de un script
+ - cluster.yml
+ - script: desploy_eks_cluster.sh
+
+DESPLEGAMOS NGINX - PROMETHUES - GRAFANA
+  9- NGINX con el escript
+  - nginx_deployment.yaml
+  - script: nginx.sh
+
+ 10- Promethues
+ - prometheus.sh
+ - prometheus.deployment.yaml
+
+  11- Grafana 
+  - despliegue_grafana.sh
+  - grafna_deployment.yaml
+
+
+ 
