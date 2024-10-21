@@ -5,6 +5,21 @@ metadata:
   name: mi-cluster-eks
   region: us-east-1
 
+vpc:
+  nat:
+    gateway: Single
+  subnets:
+    public:
+      - cidr: 10.0.0.0/24
+        availabilityZone: us-east-1a
+      - cidr: 10.0.1.0/24
+        availabilityZone: us-east-1b
+    private:
+      - cidr: 10.0.2.0/24
+        availabilityZone: us-east-1a
+      - cidr: 10.0.3.0/24
+        availabilityZone: us-east-1b
+
 iam:
   withOIDC: true
 
@@ -14,7 +29,7 @@ nodeGroups:
     desiredCapacity: 3
     iam:
       instanceRoleARN: arn:aws:iam::307946640631:role/eks-node-role
-    privateNetworking: true
+    privateNetworking: false  # Cambia esto a false para red pública
 
 serviceAccounts:
   - metadata:
